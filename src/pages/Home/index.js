@@ -1,15 +1,30 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { Conteiner } from "./styles";
+import {
+  Container,
+  SearchContainer,
+  Input,
+  SearchButton,
+  BannerButton,
+  Banner,
+  Title,
+  SliderMovie,
+} from "./styles";
+
+import { Feather } from "@expo/vector-icons";
 
 import Header from "../../components/Header";
 
 function Home() {
   return (
-    <Conteiner>
-      <Header />
-      <Text>Home</Text>
-    </Conteiner>
+    <Container>
+      <Header title="React Prime" />
+      <SearchContainer>
+        <Input placeholder="Ex Vingadores" placeholderTextColor="#DDD" />
+        <SearchButton>
+          <Feather name="search" size={30} color="#FFF" />
+        </SearchButton>
+      </SearchContainer>
+    </Container>
   );
 }
 
