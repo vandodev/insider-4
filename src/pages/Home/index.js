@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, FlatList } from "react-native";
 import {
   Container,
   SearchContainer,
@@ -8,11 +8,13 @@ import {
   Title,
   Banner,
   BannerButton,
+  SliderMovie,
 } from "./styles";
 
 import { Feather } from "@expo/vector-icons";
 
 import Header from "../../components/Header";
+import SliderItem from "../../components/SliderItem";
 
 function Home() {
   return (
@@ -40,6 +42,31 @@ function Home() {
             }}
           />
         </BannerButton>
+
+        <SliderMovie
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={[1, 2, 3, 4]}
+          renderItem={({ item }) => <SliderItem />}
+        />
+
+        <Title>Populares</Title>
+
+        <SliderMovie
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={[1, 2, 3, 4]}
+          renderItem={({ item }) => <SliderItem />}
+        />
+
+        <Title>Mais votados</Title>
+
+        <SliderMovie
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          data={[1, 2, 3, 4]}
+          renderItem={({ item }) => <SliderItem />}
+        />
       </ScrollView>
     </Container>
   );
