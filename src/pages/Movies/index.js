@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export default function Movies() {
+function Movies() {
   return (
     <View>
       <Text>Movies</Text>
