@@ -16,21 +16,16 @@ import { Feather } from "@expo/vector-icons";
 import Header from "../../components/Header";
 import SliderItem from "../../components/SliderItem";
 import api, { key as API_KEY } from "../../services/api";
+import { getListMovies } from "../../utils/movie";
 
 function Home() {
   const [nowMovies, setNowMovies] = useState();
+  const [popularMovies, setPopularMovies] = useState();
+  const [topMovies, setTopMovies] = useState();
 
   useEffect(() => {
     let isActive = true;
     async function getMovies() {
-      // const response = await api.get("/movie/now_playing", {
-      //   params: {
-      //     api_key: API_KEY,
-      //     language: "pt-BR",
-      //     page: 1,
-      //   },
-      // });
-
       const [nowData, popularData, topRatedData] = await Promise.all([
         api.get("/movie/now_playing", {
           params: {
@@ -54,7 +49,15 @@ function Home() {
           },
         }),
       ]);
-      console.log(popularData.data.results);
+      // console.log(popularData.data.results);
+      // setNowMovies(nowData.data.results);
+      const nowList = getListMovies(10, nowData.data.results);
+      const popularList = getListMovies(5, popularData.data.results);
+      const topRatedList = getListMovies(5, topRatedData.data.results);
+
+      setNowMovies(nowList);
+      setPopularMovies(popularList);
+      setTopMovies(topRatedList);
     }
     getMovies();
   }, []);
