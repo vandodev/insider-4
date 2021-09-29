@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, FlatList } from "react-native";
+import { ScrollView } from "react-native";
 import {
   Container,
   SearchContainer,
@@ -49,8 +49,6 @@ function Home() {
           },
         }),
       ]);
-      // console.log(popularData.data.results);
-      // setNowMovies(nowData.data.results);
       const nowList = getListMovies(10, nowData.data.results);
       const popularList = getListMovies(5, popularData.data.results);
       const topRatedList = getListMovies(5, topRatedData.data.results);
@@ -91,8 +89,9 @@ function Home() {
         <SliderMovie
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={[1, 2, 3, 4]}
-          renderItem={({ item }) => <SliderItem />}
+          data={nowMovies}
+          renderItem={({ item }) => <SliderItem data={item} />}
+          keyExtractor={(item) => String(item.id)}
         />
 
         <Title>Populares</Title>
@@ -100,8 +99,9 @@ function Home() {
         <SliderMovie
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={[1, 2, 3, 4]}
-          renderItem={({ item }) => <SliderItem />}
+          data={popularMovies}
+          renderItem={({ item }) => <SliderItem data={item} />}
+          keyExtractor={(item) => String(item.id)}
         />
 
         <Title>Mais votados</Title>
@@ -109,8 +109,9 @@ function Home() {
         <SliderMovie
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={[1, 2, 3, 4]}
-          renderItem={({ item }) => <SliderItem />}
+          data={topMovies}
+          renderItem={({ item }) => <SliderItem data={item} />}
+          keyExtractor={(item) => String(item.id)}
         />
       </ScrollView>
     </Container>

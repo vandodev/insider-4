@@ -1,5 +1,3 @@
-import { Movie } from "./types/movie";
-
 export function getListMovies(size, movies) {
   let popularMovies = [];
 
