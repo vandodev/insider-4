@@ -16,12 +16,13 @@ import { Feather } from "@expo/vector-icons";
 import Header from "../../components/Header";
 import SliderItem from "../../components/SliderItem";
 import api, { key as API_KEY } from "../../services/api";
-import { getListMovies } from "../../utils/movie";
+import { getListMovies, getRandomMovie } from "../../utils/movie";
 
 function Home() {
   const [nowMovies, setNowMovies] = useState();
   const [popularMovies, setPopularMovies] = useState();
   const [topMovies, setTopMovies] = useState();
+  const [bannerMovie, setBannerMovie] = useState({});
 
   const [loading, setLoading] = useState(true);
 
@@ -57,6 +58,10 @@ function Home() {
         const nowList = getListMovies(10, nowData.data.results);
         const popularList = getListMovies(5, popularData.data.results);
         const topRatedList = getListMovies(5, topRatedData.data.results);
+
+        setBannerMovie(
+          nowData.data.results[getRandomMovie(nowData.data.results)]
+        );
 
         setNowMovies(nowList);
         setPopularMovies(popularList);
@@ -103,7 +108,7 @@ function Home() {
           <Banner
             resizeMethod="resize"
             source={{
-              uri: "https://i.ytimg.com/vi/1IxLldidcmA/maxresdefault.jpg",
+              uri: `https://image.tmdb.org/t/p/original/${bannerMovie?.poster_path}`,
             }}
           />
         </BannerButton>

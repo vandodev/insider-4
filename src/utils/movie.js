@@ -7,3 +7,8 @@ export function getListMovies(size, movies) {
 
   return popularMovies;
 }
+
+//Número aleatório para banner
+export function getRandomMovie(movies) {
+  return Math.floor(Math.random() * movies.length);
+}
